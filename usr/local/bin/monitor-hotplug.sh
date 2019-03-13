@@ -37,27 +37,24 @@ do
   fi
 done <<< "$DEVICES"
 
+xrandr --output LVDS-1 --mode 1366x768 --primary
 
 if [ ! -z "$HDMI1" -a ! -z "$VGA1" ]
 then
-  echo "HDMI1 and VGA1 are plugged in"
-  xrandr --output LVDS1 --off
-  xrandr --output VGA1 --mode 1920x1080 --noprimary
-  xrandr --output HDMI1 --mode 1920x1080 --right-of VGA1 --primary
+  echo "HDMI-1 and VGA-1 are plugged in"
+  xrandr --output VGA-1 --mode 1920x1080 --above LVDS-1 --noprimary
+  xrandr --output HDMI-1 --mode 1920x1080 --right-of VGA-1 --noprimary
 elif [ ! -z "$HDMI1" -a -z "$VGA1" ]; then
-  echo "HDMI1 is plugged in, but not VGA1"
-  xrandr --output LVDS1 --off
-  xrandr --output VGA1 --off
-  xrandr --output HDMI1 --mode 1920x1080 --primary
+  echo "HDMI-1 is plugged in, but not VGA-1"
+  xrandr --output VGA-1 --off
+  xrandr --output HDMI-1 --mode 1920x1080 --above LVDS-1 --noprimary
 elif [ -z "$HDMI1" -a ! -z "$VGA1" ]; then
-  echo "VGA1 is plugged in, but not HDMI1"
-  xrandr --output LVDS1 --off
-  xrandr --output HDMI1 --off
-  xrandr --output VGA1 --mode 1920x1080 --primary
+  echo "VGA-1 is plugged in, but not HDMI-1"
+  xrandr --output HDMI-1 --off
+  xrandr --output VGA-1 --mode 1920x1080 --above LVDS-1 --noprimary
 else
   echo "No external monitors are plugged in"
-  xrandr --output LVDS1 --off
-  xrandr --output HDMI1 --off
-  xrandr --output LVDS1 --mode 1366x768 --primary
+  xrandr --output HDMI-1 --off
+  xrandr --output VGA-1 --off
 fi
 
