@@ -11,13 +11,9 @@ I was inspired by http://stackoverflow.com/questions/5469828/how-to-create-a-cal
 ## Installation
   * clone the repo
   * sudo cp usr/local/bin/monitor-hotplug.sh /usr/local/bin/
-  * sudo cp etc/udev/rules.d/99-monitor-hotplug.rules  /etc/udev/rules.d/
-  * sudo service udev restart
-
-## Debuging
-  * sudo service udev stop
-  * sudo udevd --debug 2>&1 | tee /tmp/udev.log
-  * check what's happening when you plug/unplug your monitor
+  * ~sudo cp etc/udev/rules.d/99-monitor-hotplug.rules  /etc/udev/rules.d/~
+  * ~sudo service udev restart~
+  * Above didn't work for some reason so I ended up setting up a keyboard shortcut to run /usr/local/bin/monitor-hotplug.sh on demand
 
 
 ## License
